@@ -1,0 +1,50 @@
+.div_1{
+    display : flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+a{
+    margin : 3px;
+}
+.div_2{
+    margin : 10px;
+    background-color : #77e851;
+    color : black ;
+    display : inline-block;
+    padding :10px;
+    /* position: Relative;
+    left: 1700px; */
+    border-radius: 20px 20px 20px 20px;
+}
+.tr_1{
+    background-color : gray;
+    font-size : 20px ;
+}
+table{
+    text-align : center ;
+}
+.div_4{
+    display : flex;
+    justify-content: center;
+}
+button{
+    background-color : #77e851;
+}
+select{
+    background-color : #cdfcbd;
+}
+h1{
+    font-size : 50px;
+    display:flex;
+    justify-content: center;
+    margin : 20px 0px 0px 0px;
+    font-family : cursive;
+}
+.kosdaq{
+    position : fixed;
+    right:60px;
+}
+/* .hhh{
+    position : fixed;
+    right: 500px;
+} */

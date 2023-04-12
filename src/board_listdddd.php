@@ -44,17 +44,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="style1.css">
     <title>게시판</title>
-    <style>
-        body {
-            background-image : url('kkkkk.png') ;
-            background-repeat : no-repeat;
-            background-repeat : cover;
-        }
-        a{  
-            color : black;
-            font-size : 20px;
-        }
-    </style>
     <!-- <style>
     .div_1{
         display : flex;
@@ -101,12 +90,7 @@
     </style> -->
 </head>
 <body>
-    <h1>주식 게시판</h1>
-    <div class="kosdaq">
-    <a class="btn btn-outline-primary" href="https://m.stock.naver.com/domestic/index/KOSPI/total" target="_blank" >코스피지수 보기</a>
-    <a class="btn btn-outline-primary" href="https://m.stock.naver.com/domestic/index/KOSDAQ/total" target="_blank">코스닥지수 보기</a>
-    </div>
-
+    <h1>게시판</h1>
     <script>
 if (!sessionStorage.getItem('visited')) 
     {
@@ -132,7 +116,7 @@ if (!sessionStorage.getItem('visited'))
                     <tr>
                     <td><?php echo $recode["board_no"]?></td>
                     <td><a href="board_detail.php?board_no=<?php echo $recode["board_no"] ?>"><?php echo $recode["board_title"]?></td>
-                    <td> <?php echo $recode["board_write_date"]?></td>
+                    <td <?php echo $recode["board_write_date"]?></td>
                     </tr>
             <?php
                 }
@@ -159,64 +143,8 @@ if (!sessionStorage.getItem('visited'))
 							<option value="problem">게시글 번호</option>
 							<option value="author">작성일자</option>
 	</select>
-    <?php
-function search_info($search_word)
-{
-    if (empty($_REQUEST["search_word"])) { // 검색어가 empty일 때 예외처리를 해준다.
-        $search_word = "";
-    } else {
-        $search_word = $_REQUEST["search_word"];
-    }
-
-    $sql =
-        " SELECT " .
-        " board_no " .
-        " ,board_title " .
-        " ,board_write_date " .
-        " FROM " .
-        " board_info " .
-        " WHERE " .
-        " ( board_title LIKE '%$search_word%' ) " .
-        " AND " .
-        " board_del_flg = 0 ";
-    $arr_prepare = array();
-    try {
-        db_conn($conn);
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($arr_prepare);
-        $result = $stmt->fetchAll();
-    } catch (Exception $e) {
-        return $e->getMassage();
-    } finally {
-        $conn = null;
-    }
-    return $result;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $arr_post = $_POST;
-    $result_info = search_info($arr_post["search_word"]);
-} else {
-    $result_info = array();
-}
-?>
-<form method="POST" action="">
-    <input type="text" name="search_word" placeholder="입력해주세요" value="">
+    <input type="text"  name="search_term" placeholder="입력해주세요" value="">
     <button type="submit">검색</button>
-</form>
-</div>
-<table class='table table-striped'>
-    <?php
-    foreach ($result_info as $recode) {
-    ?>
-        <tr>
-            <th><?php echo $recode['board_no'] ?></th>
-            <th><?php echo $recode['board_title'] ?></th>
-            <th><?php echo $recode['board_write_date'] ?></th>
-        </tr>
-    <?php
-    }
-    ?>
-</table>
+    </div>
 </body>
 </html>
