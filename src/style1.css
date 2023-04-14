@@ -5,6 +5,8 @@
 }
 a{
     margin : 3px;
+    text-decoration: none;
+    font-weight: 800;
 }
 .div_2{
     margin : 10px;
@@ -48,3 +50,8 @@ h1{
     position : fixed;
     right: 500px;
 } */
+.insert_1{
+    position: fixed;
+    left: 212px;
+    top : 95px
+}

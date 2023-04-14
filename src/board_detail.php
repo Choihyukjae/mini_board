@@ -1,6 +1,7 @@
 <?php
 define( "DOC_ROOT", $_SERVER["DOCUMENT_ROOT"]."/");
 define( "URL_DB", DOC_ROOT."src/common/db_common.php" );
+define( "URL_HEADER", "board_header.php" );
 include_once( URL_DB );
 
 // Request Parameter 획득(GET)
@@ -35,8 +36,10 @@ $result_info = select_board_info_no($arr_get["board_no"]);
             height:300px;
         }
     </style>
+        <link rel="stylesheet" href="style1.css">
 </head>
 <body>
+<?php include_once( URL_HEADER ) ?>
     <div>
         <p>게시글 번호 : <?php echo $result_info["board_no"]  ?><br></p>
         <p>작성일 : <?php echo $result_info["board_write_date"]  ?><br></p>

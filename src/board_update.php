@@ -1,6 +1,7 @@
 <?php
     define( "DOC_ROOT", $_SERVER["DOCUMENT_ROOT"]."/");
     define( "URL_DB", DOC_ROOT."src/common/db_common.php" );
+    define( "URL_HEADER", "board_header.php" );
     include_once( URL_DB );
     // Request method 를 획득
     $http_method = $_SERVER["REQUEST_METHOD"];
@@ -47,7 +48,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>게시판</title>
+    <title>게시판 수정</title>
     <link rel="stylesheet" href="style1.css">
     <style>
         body{
@@ -66,9 +67,10 @@
         .fo_1{
         }
     </style>
+        <link rel="stylesheet" href="style1.css">
 </head>
 <body>
-<h1>게시물수정</h1>
+<?php include_once( URL_HEADER ) ?>
     <form class="fo_1" method="post" action= "board_update.php">
         <label for=bno>게시글 번호 :</label>
         <input style="width:600px;" type="text" name="board_no" id="bno" value="<?php echo $result_info['board_no'] ?>"  readonly >

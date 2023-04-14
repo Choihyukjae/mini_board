@@ -1,6 +1,7 @@
 <?php
     define( "DOC_ROOT", $_SERVER["DOCUMENT_ROOT"]."/");
     define( "URL_DB", DOC_ROOT."src/common/db_common.php" );
+
     include_once( URL_DB );
     $http_method = $_SERVER["REQUEST_METHOD"];
     //겟체크
@@ -55,70 +56,29 @@
             font-size : 20px;
         }
     </style>
-    <!-- <style>
-    .div_1{
-        display : flex;
-        justify-content: center;
-        /* align-items: center; */
-    }
-    a{
-        margin : 3px;
-    }
-    .div_2{
-        margin : 10px;
-        background-color : #77e851;
-        color : black ;
-        display : inline-block;
-        padding :10px;
-        /* position: Relative;
-        left: 1700px; */
-        border-radius: 20px 20px 20px 20px;
-    }
-    .tr_1{
-        background-color : gray;
-        font-size : 20px ;
-    }
-    table{
-        text-align : center ;
-    }
-    .div_4{
-        display : flex;
-        justify-content: center;
-    }
-    button{
-        background-color : #77e851;
-    }
-    select{
-        background-color : #cdfcbd;
-    }
-    h1{
-        font-size : 50px;
-        display:flex;
-        justify-content: center;
-        margin : 20px 0px 0px 0px;
-        font-family : cursive;
-    }
-    </style> -->
 </head>
 <body>
-    <h1>주식 게시판</h1>
-    <div class="kosdaq">
-    <a class="btn btn-outline-primary" href="https://m.stock.naver.com/domestic/index/KOSPI/total" target="_blank" >코스피지수 보기</a>
-    <a class="btn btn-outline-primary" href="https://m.stock.naver.com/domestic/index/KOSDAQ/total" target="_blank">코스닥지수 보기</a>
-    </div>
+<h1>주식 게시판</h1>
 
     <script>
 if (!sessionStorage.getItem('visited')) 
     {
-        var name = prompt('이름을 입력하세요');
+        var name = prompt('이름을 입력하세요','4글자 이하로 입력해주세요');
         sessionStorage.setItem('visited', true);
     }
     </script>
+        <div class="kosdaq">
+    <a class="btn btn-outline-primary" href="https://m.stock.naver.com/domestic/index/KOSPI/total" target="_blank" >코스피지수 보기</a>
+    <a class="btn btn-outline-primary" href="https://m.stock.naver.com/domestic/index/KOSDAQ/total" target="_blank">코스닥지수 보기</a>
+    </div>
+
+    <button class="insert_1" type="button" > <a href="board_insert.php">게시글 작성</a> </button>
+
     <div class='table table-striped'>
         <div class='div_2'>환영합니다 <script> document.write(name)</script> 님</div>
     <table class='table table-striped'>
         <thead>
-            <tr class = 'tr_1'>
+            <tr style="background-color : gray;" class = 'tr_1'>
                 <th width = 150px;>게시글 번호</th>
                 <th width = 600px>게시글 제목</th>
                 <th width = 150px>작성일자</th>
@@ -200,23 +160,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result_info = array();
 }
 ?>
-<form method="POST" action="">
+<form method="POST" action="board_search.php">
     <input type="text" name="search_word" placeholder="입력해주세요" value="">
     <button type="submit">검색</button>
 </form>
 </div>
-<table class='table table-striped'>
-    <?php
-    foreach ($result_info as $recode) {
-    ?>
-        <tr>
-            <th><?php echo $recode['board_no'] ?></th>
-            <th><?php echo $recode['board_title'] ?></th>
-            <th><?php echo $recode['board_write_date'] ?></th>
-        </tr>
-    <?php
-    }
-    ?>
-</table>
+
 </body>
 </html>
